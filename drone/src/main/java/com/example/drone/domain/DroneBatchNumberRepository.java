@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface DroneBatchNumberRepository extends JpaRepository<DroneBatchNumber, Long>, JpaSpecificationExecutor<DroneBatchNumber> {
 
-    @Query(value = "select * from DroneBatchNumber d where d.drone.id = :id  ORDER BY d.createdAt asc", nativeQuery = true)
+    @Query(value = "select d from DroneBatchNumber d where d.drone.id = :id  ORDER BY d.createdAt asc LIMIT 1", nativeQuery = true)
     Optional<DroneBatchNumber> findLatestDroneBatchNumber(Long id);
 }
